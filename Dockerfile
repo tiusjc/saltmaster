@@ -1,16 +1,27 @@
-FROM ubuntu:xenial
+FROM debian:stable-slim
 
-MAINTAINER DTI-SJC <tiusjc@gmail.com>
+LABEL maintainer="DTI-SJC <tiusjc@gmail.com>"
 
-RUN apt-get update && apt-get install -q -y --no-install-recommends nano net-tools wget python-software-properties software-properties-common
+ENV BOOTSTRAP_OPTS='-M'
 
-RUN wget -O - https://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
+ENV SALT_VERSION=stable
 
-RUN echo deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest xenial main > /etc/apt/sources.list.d/saltstack.list
+COPY bootstrap-salt.sh /tmp/
 
-RUN apt-get update && apt-get install -q -y salt-master
+RUN echo udev hold | dpkg --set-selections
 
-RUN export TERM=xterm
+RUN sudo sh /tmp/bootstrap-salt.sh -U -X -d $BOOTSTRAP_OPTS $SALT_VERSION && \
+    apt-get clean
+
+RUN /usr/sbin/update-rc.d -f ondemand remove; \
+    update-rc.d salt-minion defaults && \
+    update-rc.d salt-master defaults || true
+
+RUN mkdir /srv/salt
+
+VOLUME /etc/salt
+
+VOLUME /srv/salt
 
 ENTRYPOINT ["/usr/bin/salt-master"]
 
