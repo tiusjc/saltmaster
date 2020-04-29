@@ -17,11 +17,8 @@ RUN /usr/sbin/update-rc.d -f ondemand remove; \
 
 RUN mkdir /srv/salt
 
-EXPOSE 4505 4506
-
 VOLUME /etc/salt
 
 VOLUME /srv/salt
 
-ENTRYPOINT ["/usr/bin/salt-master"]
 
