@@ -14,7 +14,10 @@ RUN sh /tmp/bootstrap-salt.sh -U -X -d $BOOTSTRAP_OPTS $SALT_VERSION && \
 RUN /usr/sbin/update-rc.d -f ondemand remove; \
     update-rc.d salt-minion defaults && \
     update-rc.d salt-master defaults || true
+
 RUN mkdir /srv/salt
+
+EXPOSE 4505 4506
 
 VOLUME /etc/salt
 
@@ -22,4 +25,3 @@ VOLUME /srv/salt
 
 ENTRYPOINT ["/usr/bin/salt-master"]
 
-EXPOSE 4505 4506
