@@ -21,4 +21,4 @@ VOLUME /etc/salt
 
 VOLUME /srv/salt
 
-
+EXPOSE 4505 4506
