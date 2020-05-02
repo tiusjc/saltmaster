@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:buster 
 
 LABEL maintainer DTI-SJC <tiusjc@gmail.com>
 
