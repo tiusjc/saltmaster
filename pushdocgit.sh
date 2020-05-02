@@ -15,7 +15,7 @@ error() {
 gitbuild() {
   echo "Git building...${1}"
   git add .
-  git commit "Atualizando ${1}"
+  git commit -m "Atualizando ${1}"
   git push origin master
 }
 
