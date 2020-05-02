@@ -23,7 +23,7 @@ RUN useradd saltdev -p '$6$0BIlOqYqg5Rcuu5A$ojdWZ.aZztdSqPCnqsEE3ViRDcFAZ0MSp0UU
 
 VOLUME /etc/salt
 
-RUN mkdir /srv/salt
+RUN mkdir /srv/salt/
 
 VOLUME /srv/salt
 
