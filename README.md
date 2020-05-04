@@ -11,7 +11,7 @@ salt-master: Este contêiner configura uma instância de salt-master, a configur
 ### Iniciando o container **salt-master**
 
 ```bash
-$ docker run --net dockerTI --ip 172.20.0.26 --hostname saltmaster --name saltmaster -v /etc/salt/master.d:/etc/salt/masterd.d -v /srv/salt:/srv/salt -p 8000:8000 -ti tiusjc/saltmaster:buster /bin/bash
+$ docker run --net dockerTI --ip <ip_saltmaster> --hostname saltmaster --name saltmaster -v /etc/salt/master.d:/etc/salt/masterd.d -v /srv/salt:/srv/salt -p 8000:8000 -ti tiusjc/saltmaster:buster /bin/bash
 ```
 ### Executando comando no contêiner via linha de comando (docker exec)
 
@@ -24,7 +24,7 @@ $ docker exec saltmaster /bin/bash -c "salt-run salt.cmd test.ping"
 1. Gerar um token 
 
 ```
-# curl -sS http://localhost:8000/login -c ~/cookies.txt -H 'Accept: application/json' \ 
+# curl -sS http://<ip_saltmaster>:8000/login -c ~/cookies.txt -H 'Accept: application/json' \ 
 -d username=saltdev -d password=saltdev -d eauth=pam
 ```
 ```
@@ -46,7 +46,7 @@ $ docker exec saltmaster /bin/bash -c "salt-run salt.cmd test.ping"
 
 2. Executando comandos via API do Salt.
 ```
-$ curl -sS http://localhost:8000 -b ~/cookies.txt -H 'Accept: application/json' -d client=local \
+$ curl -sS http://<ip_saltmaster>:8000 -b ~/cookies.txt -H 'Accept: application/json' -d client=local \
 -d tgt='*' -d fun=cmd.run -d arg="uptime"
 ```
 

@@ -15,7 +15,7 @@ error() {
 gitbuild() {
   echo "Git building...${1}"
   git add .
-  git commit -m "Atualizando ${1}"
+  git commit -m ${2}
   git push origin master
 }
 
@@ -31,7 +31,7 @@ dockerpush() {
  echo "Pushed $(echo $DOCKER_USERNAME):${1}"
 }
 
-gitbuild ${1}
+gitbuild ${1} ${2}
 error
 dockerbuild ${1}
 error
