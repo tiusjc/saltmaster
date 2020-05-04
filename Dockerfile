@@ -4,8 +4,6 @@ LABEL maintainer DTI-SJC <tiusjc@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN groupadd -r docker && useradd -r -g docker saltdev
-
 RUN apt-get update -q && apt-get install -q -y wget apt-utils nano gpg procps
 
 RUN wget -O - 'https://repo.saltstack.com/py3/debian/10/amd64/latest/SALTSTACK-GPG-KEY.pub' | apt-key add -
@@ -28,6 +26,10 @@ RUN mkdir /srv/salt/
 VOLUME /srv/salt/
 
 VOLUME /etc/salt/master.d/
+
+chown -R saltdev:saltdev /etc/salt/
+
+chown -R saltdev:saltdev /srv/salt/
 
 RUN export TERM=xterm
 
