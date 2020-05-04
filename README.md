@@ -2,7 +2,7 @@
 
 # Introdução
 
-## Este repositório possui dois dockerfiles do Salt::
+## Este repositório possui dois dockerfiles do Salt:
 
 salt-master: Este contêiner configura uma instância de salt-master, a configuração já aceita automaticamente os minions que apontarem para o ip do servidor Salt e também já habilita a API do salt na porta 8000.
 
