@@ -4,6 +4,10 @@ LABEL maintainer DTI-SJC <tiusjc@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN mkdir -p /etc/salt/master.d/
+
+RUN mkdir -p /srv/salt/
+
 RUN apt-get update -q && apt-get install -q -y wget apt-utils nano gpg procps
 
 RUN wget -O - 'https://repo.saltstack.com/py3/debian/10/amd64/latest/SALTSTACK-GPG-KEY.pub' | apt-key add -
@@ -21,15 +25,9 @@ COPY entrypoint-master.sh /entrypoint-master.sh
 RUN useradd saltdev -p '$6$0BIlOqYqg5Rcuu5A$ojdWZ.aZztdSqPCnqsEE3ViRDcFAZ0MSp0UUvT23GG5mnbUOcalZPh8basKox2wcn4F1if2kfChOO/J1K2boe.' && \
 	  sed -i -e 's/^user: salt$/user: root/g' /etc/salt/master
 
-RUN mkdir /srv/salt/
-
 VOLUME /srv/salt/
 
 VOLUME /etc/salt/master.d/
-
-RUN chown -R saltdev:saltdev /etc/salt/
-
-RUN chown -R saltdev:saltdev /srv/salt/
 
 RUN export TERM=xterm
 
