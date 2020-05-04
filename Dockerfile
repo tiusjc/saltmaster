@@ -27,9 +27,9 @@ VOLUME /srv/salt/
 
 VOLUME /etc/salt/master.d/
 
-chown -R saltdev:saltdev /etc/salt/
+RUN chown -R saltdev:saltdev /etc/salt/
 
-chown -R saltdev:saltdev /srv/salt/
+RUN chown -R saltdev:saltdev /srv/salt/
 
 RUN export TERM=xterm
 
