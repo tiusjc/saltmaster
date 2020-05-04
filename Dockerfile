@@ -31,4 +31,7 @@ EXPOSE 4506/tcp
 
 EXPOSE 8000/tcp
 
+RUN /usr/sbin/update-rc.d -f ondemand remove; \
+    update-rc.d salt-master defaults || true
+
 CMD /entrypoint-master.sh
