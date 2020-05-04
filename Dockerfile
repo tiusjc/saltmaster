@@ -4,7 +4,7 @@ LABEL maintainer DTI-SJC <tiusjc@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN groupadd -r docker && useradd -r -g saltdev docker
+RUN groupadd -r docker && useradd -r -g docker saltdev
 
 RUN apt-get update -q && apt-get install -q -y wget apt-utils nano gpg procps
 
