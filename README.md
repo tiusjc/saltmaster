@@ -11,7 +11,7 @@ salt-master: Este contêiner configura uma instância de salt-master, a configur
 ### Iniciando o container **salt-master**
 
 ```bash
-$ docker run -d --net dockerTI --hostname salt --name salt -v /srv/salt:/srv/salt -p 8000:8000 -ti tiusjc/saltmaster:buster
+$ docker run --net dockerTI --ip 172.20.0.26 --hostname saltmaster --name saltmaster -v /etc/salt/master.d:/etc/salt/masterd.d -v /srv/salt:/srv/salt -p 8000:8000 -ti tiusjc/saltmaster:buster /bin/bash
 ```
 ### Executando comando no contêiner via linha de comando (docker exec)
 
