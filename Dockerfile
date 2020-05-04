@@ -21,11 +21,7 @@ COPY entrypoint-master.sh /entrypoint-master.sh
 RUN useradd saltdev -p '$6$0BIlOqYqg5Rcuu5A$ojdWZ.aZztdSqPCnqsEE3ViRDcFAZ0MSp0UUvT23GG5mnbUOcalZPh8basKox2wcn4F1if2kfChOO/J1K2boe.' && \
 	  sed -i -e 's/^user: salt$/user: root/g' /etc/salt/master
 
-VOLUME /etc/salt/master.d/
-
 RUN mkdir /srv/salt/
-
-VOLUME /srv/salt
 
 RUN export TERM=xterm
 
